@@ -17,7 +17,16 @@
               <input type="number" class="form-control" id="firstAmount" required>
             </div>
             <div class="col-sm-6">
-              <label for="secondAmount" class="form-label">Amount in KRW:</label>
+              <label for="secondAmount" class="form-label">Amount in</label>
+              <input class="form-label" list="currencies" name="currency" id="currencySelect" type="text" required>
+              <datalist id="currencies">
+                <option value="AUD"></option>
+                <option value="CAD"></option>
+                <option value="EUR"></option>
+                <option value="GBP"></option>
+                <option value="JPY"></option>
+                <option value="KRW"></option>
+              </datalist>
               <input type="number" class="form-control" id="secondAmount" disabled>
             </div>
           </div>
@@ -26,6 +35,7 @@
         </form>
       </div>
       <div id="result">
+        <h5 id="showErrors"></h5>
         <h4><span id="baseUSD"></span> USD is...</h4>
         <div id="rates"></div>
       </div>

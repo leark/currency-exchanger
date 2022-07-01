@@ -8,20 +8,60 @@ import ExchangeService from './exchange-service.js';
 // User Interface Logic
 
 $(function () {
+  // getCurrencies();
   $('#showRate').on('click', function (event) {
     event.preventDefault();
     getRates();
   });
 });
 
+// fills datalist #currencies with available currencies
+async function getCurrencies() {
+  const response = await ExchangeService.getSupportedCurrencies();
+  displayCurrencies(response);
+}
+
 async function getRates() {
-  // const response = await ExchangeService.getExchangeRate();
-  const response = MOCK_RESPONSE;
+  const response = await ExchangeService.getExchangeRate();
+  // const response = MOCK_RESPONSE;
   displayRates(response);
 }
 
+function displayCurrencies(response) {
+  $('#showErrors').text('');
+  if (response.documentation) {
+    const rates = new Map(response.supported_codes);
+  } else {
+    $('#showErrors').text(
+      `There was an error with getting the available currencies: ${response}`
+    );
+  }
+}
+
 function displayRates(response) {
-  const rates = response.conversion_rates;
+  $('#showErrors').text('');
+  if (response.documentation) {
+    const rates = response.conversion_rates;
+    displayConverted(rates);
+    displayRatesList(rates);
+  } else {
+    $('#showErrors').text(
+      `There was an error with getting the current exchange rate: ${response}`
+    );
+  }
+}
+
+function displayConverted(rates) {
+  const fAmount = $('#firstAmount').val();
+  const currency = $('#currencySelect').val();
+  if (rates[currency]) {
+    $('#secondAmount').val(fAmount * parseFloat(rates[currency]));
+  } else {
+    $('#showErrors').text(`Currency ${currency} does not exist`);
+  }
+}
+
+function displayRatesList(rates) {
   let ul = document.createElement('ul');
   for (const currency in rates) {
     if (currency !== 'USD') {
@@ -32,6 +72,7 @@ function displayRates(response) {
       $('#baseUSD').text(rates[currency]);
     }
   }
+  $('#rates').html('');
   $('#rates').append(ul);
 }
 
@@ -56,6 +97,7 @@ const MOCK_RESPONSE = {
     FJD: 2.2101,
     FKP: 0.8232,
     FOK: 7.134,
+    GBP: 0.8232,
     HKD: 7.8491,
     HNL: 24.6526,
     HRK: 7.2049,
