@@ -1,0 +1,44 @@
+{
+  "name": "template-repo",
+  "version": "1.0.0",
+  "description": "* _HTML_\r * _CSS_\r * _Bootstrap_\r * _jQuery_\r * _npm_\r * _webpack_\r * _eslint_\r * _babel_\r * _html-loader_\r * _style-loader_\r * _css-loader_\r * _file-loader_\r * _jest_",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "webpack --mode development",
+    "start": "npm run build && webpack-dev-server --open --mode development",
+    "lint": "eslint src/*.js",
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leark/template-repo.git"
+  },
+  "keywords": [],
+  "author": "Seung Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leark/template-repo/issues"
+  },
+  "homepage": "https://github.com/leark/template-repo#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.3.0",
+    "eslint-loader": "^3.0.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^1.3.2",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
+    "style-loader": "^1.0.0",
+    "webpack": "4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "3.8.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1"
+  }
+}
