@@ -9,11 +9,20 @@
       <h1 id="title">Currency Exchanger</h1>
     </div>
     <div id="mainContent">
-      <div id="">
-        <form>
-          <label for="usdAmount"></label>
-          <input type="number" id="usdAmount">
-          <button type="submit" class="btn btn-success" id="showRate">Show Exchange Rate</button>
+      <div id="inputDiv" class="row">
+        <form id="inputForm">
+          <div class="row">
+            <div class="col-sm-6">
+              <label for="firstAmount" class="form-label">Amount in USD:</label>
+              <input type="number" class="form-control" id="firstAmount" required>
+            </div>
+            <div class="col-sm-6">
+              <label for="secondAmount" class="form-label">Amount in KRW:</label>
+              <input type="number" class="form-control" id="secondAmount" disabled>
+            </div>
+          </div>
+          <hr class="my-4">
+          <button type="submit" class="w-100 btn btn-primary btn-lg" id="showRate">Show Exchange Rate</button>
         </form>
       </div>
       <div id="result">
