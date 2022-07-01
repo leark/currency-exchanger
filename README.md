@@ -37,13 +37,27 @@
 
 4. Run the command
 
+    ``touch .env``
+
+5. Go to [ExchangeRate-API website](https://www.exchangerate-api.com/)
+
+6. Click on "Get Free Key!" after putting in your email address
+
+7. Follow directions and sign in to go to the dashboard
+
+8. Copy the API key and type the following line in the .env file where {YOUR API KEY HERE} is the copied API key
+
+    ``API_KEY={YOUR API KEY HERE}``
+
+9. Run the command
+
     ``npm init -y``
 
-5. Run the command
+10. Run the command
 
     ``npm install``
 
-6. Run the command
+11. Run the command
 
     ``npm run start``
 
