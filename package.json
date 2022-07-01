@@ -1,5 +1,5 @@
 {
-  "name": "template-repo",
+  "name": "currency-exchanger",
   "version": "1.0.0",
   "description": "* _HTML_\r * _CSS_\r * _Bootstrap_\r * _jQuery_\r * _npm_\r * _webpack_\r * _eslint_\r * _babel_\r * _html-loader_\r * _style-loader_\r * _css-loader_\r * _file-loader_\r * _jest_",
   "main": "webpack.config.js",
@@ -11,20 +11,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leark/template-repo.git"
+    "url": "git+https://github.com/leark/currency-exchanger.git"
   },
   "keywords": [],
   "author": "Seung Lee",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/leark/template-repo/issues"
+    "url": "https://github.com/leark/currency-exchanger/issues"
   },
-  "homepage": "https://github.com/leark/template-repo#readme",
+  "homepage": "https://github.com/leark/currency-exchanger#readme",
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/plugin-transform-modules-commonjs": "^7.6.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
+    "dotenv-webpack": "^2.0.0",
     "eslint": "^6.3.0",
     "eslint-loader": "^3.0.0",
     "file-loader": "^6.2.0",

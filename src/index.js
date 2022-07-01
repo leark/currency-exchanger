@@ -6,4 +6,4 @@ import './css/styles.css';
 
 // User Interface Logic
 
-$(document).ready(function () {});
+$(function () {});

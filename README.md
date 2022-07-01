@@ -1,6 +1,6 @@
-# (Application Name)
+# Currency Exchanger
 
-#### (Brief Description of Application)
+#### A website that converts USD to other currencies based on information from ExchangeRate-API.
 
 #### By Seung Lee
 
@@ -19,8 +19,9 @@
 * _css-loader_
 * _file-loader_
 * _jest_
+* _dotenv_
 
-## [GitHub Pages Link](https://leark.github.io/template-repo)
+## [GitHub Pages Link](https://leark.github.io/currency-exchanger)
 ## Description
 
 ## Setup/Installation Requirements
@@ -28,11 +29,11 @@
 1. Open Git Bash if on Windows and terminal if on Mac
 2. Run the command
 
-    ``git clone https://github.com/leark/template-repo.git``
+    ``git clone https://github.com/leark/currency-exchanger.git``
 
 3. Run the command
 
-    ``cd template-repo``
+    ``cd currency-exchanger``
 
 4. Run the command
 
@@ -48,8 +49,7 @@
 
 ## Known Bugs
 
-* _Any known issues_
-* _should go here_
+* _No Known Issues_
 
 ## License
 
