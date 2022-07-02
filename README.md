@@ -23,6 +23,7 @@
 
 ## [GitHub Pages Link](https://leark.github.io/currency-exchanger)
 ## Description
+Currency Exchanger is a simple webpage where a user can select the original currency, its amount, and target currency to see how much it's worth in the target currency. Bottom of the page also displays how much 1 USD is worth in all the currencies supported.
 
 ## Setup/Installation Requirements
 
@@ -49,7 +50,7 @@
 
     ``API_KEY={YOUR API KEY HERE}``
 
-9. Run the command
+9. Run the command in Git Bash/terminal
 
     ``npm init -y``
 
