@@ -8,10 +8,23 @@ import ExchangeService from './exchange-service.js';
 // User Interface Logic
 
 $(function () {
-  // getCurrencies();
+  getCurrencies();
   $('#showRate').on('click', function (event) {
     event.preventDefault();
-    getRates();
+    ExchangeService.getExchangeRate()
+      .then(function (response) {
+        if (response instanceof Error) {
+          throw Error(`ExchangeRate API error: ${response.message}`);
+        }
+        const rates = response.conversion_rates;
+        displayConverted(rates);
+        displayRatesList(rates);
+      })
+      .catch(function (error) {
+        $('#showErrors').text(
+          `There was an error with getting the current exchange rate: ${error.message}`
+        );
+      });
   });
 });
 
@@ -21,32 +34,20 @@ async function getCurrencies() {
   displayCurrencies(response);
 }
 
-async function getRates() {
-  const response = await ExchangeService.getExchangeRate();
-  // const response = MOCK_RESPONSE;
-  displayRates(response);
-}
-
 function displayCurrencies(response) {
   $('#showErrors').text('');
   if (response.documentation) {
-    const rates = new Map(response.supported_codes);
+    const list = $('#currencies');
+    const rates = response.supported_codes;
+    rates.forEach(function (element) {
+      let currency = $(document.createElement('option'));
+      currency.text(element[1]);
+      currency.val(element[0]);
+      list.append(currency);
+    });
   } else {
     $('#showErrors').text(
       `There was an error with getting the available currencies: ${response}`
-    );
-  }
-}
-
-function displayRates(response) {
-  $('#showErrors').text('');
-  if (response.documentation) {
-    const rates = response.conversion_rates;
-    displayConverted(rates);
-    displayRatesList(rates);
-  } else {
-    $('#showErrors').text(
-      `There was an error with getting the current exchange rate: ${response}`
     );
   }
 }
@@ -72,8 +73,9 @@ function displayRatesList(rates) {
       $('#baseUSD').text(rates[currency]);
     }
   }
-  $('#rates').html('');
-  $('#rates').append(ul);
+  $('#rates').show();
+  $('#ratesList').html('');
+  $('#ratesList').append(ul);
 }
 
 const MOCK_RESPONSE = {
