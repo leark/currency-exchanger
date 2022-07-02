@@ -11,6 +11,7 @@ $(function () {
   getCurrencies();
   $('#showRate').on('click', function (event) {
     event.preventDefault();
+    $('#showErrors').text('');
     // checking if we've already stored rates in session storage
     if (!sessionStorage.getItem('rates')) {
       ExchangeService.getExchangeRate()
@@ -48,8 +49,9 @@ async function getCurrencies() {
 function displayCurrencies(response) {
   $('#showErrors').text('');
   if (response.documentation) {
-    const list = $('#currencies');
+    const list = $('.currencies');
     const currencies = response.supported_codes;
+    console.log(list[0]);
     currencies.forEach(function (element) {
       let currency = $(document.createElement('option'));
       currency.text(element[1]);
@@ -65,12 +67,20 @@ function displayCurrencies(response) {
 
 function displayConverted(rates) {
   const fAmount = $('#firstAmount').val();
-  const currency = $('#currencySelect').val();
-  if (rates[currency]) {
-    let amount = fAmount * parseFloat(rates[currency]);
-    $('#secondAmount').val(amount.toFixed(3));
+  const origCurrency = $('#firstCurrencySelect').val();
+  const targetCurrency = $('#secondCurrencySelect').val();
+  if (rates[origCurrency] && rates[targetCurrency]) {
+    let origToUSD = fAmount / parseFloat(rates[origCurrency]);
+    let usdToTarget = origToUSD * parseFloat(rates[targetCurrency]);
+    if (targetCurrency !== 'USD') {
+      $('#secondAmount').val(usdToTarget.toFixed(3));
+    } else {
+      $('#secondAmount').val(origToUSD.toFixed(3));
+    }
   } else {
-    $('#showErrors').text(`Currency ${currency} does not exist`);
+    $('#showErrors').text(
+      `Currency ${origCurrency} ${targetCurrency} does not exist`
+    );
   }
 }
 

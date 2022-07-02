@@ -13,17 +13,21 @@
         <form id="inputForm">
           <div class="row">
             <div class="col-sm-6">
-              <label for="firstAmount" class="form-label">Amount in USD:</label>
+              <label for="firstAmount" class="form-label">Amount in</label>
+              <input class="form-label" list="firstCurrencies" id="firstCurrencySelect" type="text" placeholder="Type in a currency...*" required>
+              <datalist class="currencies" id="firstCurrencies">
+              </datalist>
               <input type="number" class="form-control" id="firstAmount" required>
             </div>
             <div class="col-sm-6">
-              <label for="secondAmount" class="form-label">Amount in</label>
-              <input class="form-label" list="currencies" name="currency" id="currencySelect" type="text" placeholder="Type in a currency..." required>
-              <datalist id="currencies">
+              <label for="secondAmount" class="form-label">Convert to amount in</label>
+              <input class="form-label" list="secondCurrencies" id="secondCurrencySelect" type="text" placeholder="Type in a currency...*" required>
+              <datalist class="currencies" id="secondCurrencies">
               </datalist>
               <input type="number" class="form-control" id="secondAmount" disabled>
             </div>
           </div>
+          <p>* You can also search by country name but make sure to use currency abbreviation.</p>
           <hr class="my-4">
           <button type="submit" class="w-100 btn btn-primary btn-lg" id="showRate">Show Exchange Rate</button>
         </form>
@@ -31,7 +35,7 @@
       <div id="result">
         <div><h5 id="showErrors"></h5></div>
         <div id="rates">
-          <h4><span id="baseUSD"></span> USD is...</h4>
+          <h4>Right now <span id="baseUSD"></span> USD is...</h4>
           <div id="ratesList"></div>
         </div>
       </div>
