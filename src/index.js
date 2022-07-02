@@ -36,18 +36,21 @@ $(function () {
   });
 });
 
-// fills datalist #currencies with available currencies
 async function getCurrencies() {
-  const response = await ExchangeService.getSupportedCurrencies();
-  displayCurrencies(response);
+  if (!sessionStorage.getItem('currencies')) {
+    const response = await ExchangeService.getSupportedCurrencies();
+    sessionStorage.setItem('currencies', JSON.stringify(response));
+  }
+  displayCurrencies(JSON.parse(sessionStorage.getItem('currencies')));
 }
 
+// fills datalist #currencies with available currencies
 function displayCurrencies(response) {
   $('#showErrors').text('');
   if (response.documentation) {
     const list = $('#currencies');
-    const rates = response.supported_codes;
-    rates.forEach(function (element) {
+    const currencies = response.supported_codes;
+    currencies.forEach(function (element) {
       let currency = $(document.createElement('option'));
       currency.text(element[1]);
       currency.val(element[0]);
@@ -64,7 +67,8 @@ function displayConverted(rates) {
   const fAmount = $('#firstAmount').val();
   const currency = $('#currencySelect').val();
   if (rates[currency]) {
-    $('#secondAmount').val(fAmount * parseFloat(rates[currency]));
+    let amount = fAmount * parseFloat(rates[currency]);
+    $('#secondAmount').val(amount.toFixed(3));
   } else {
     $('#showErrors').text(`Currency ${currency} does not exist`);
   }
